@@ -1,2 +1,2 @@
-
-# dht11_docker
+利用docker打包服務(mysql+phpmyadmin)，已有內建完成的table schema以及警告機制
+dht11部分內有code 只需更改幾個部分即可使用
