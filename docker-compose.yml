@@ -1,0 +1,30 @@
+version: "3.5"
+services:
+    mysql:
+        image: yuting09120310/mysql
+        container_name: mysql
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: 1qazxsw2
+            MYSQL_USER: sa
+            MYSQL_PASSWORD: 1qazxsw2
+            TZ: Asia/Taipe
+        volumes:
+            - ".data/setup.sql:/docker-entrypoint-initdb.d/setup.sql"
+            - db_data:/var/lib/mysql/
+    
+    phpmyadmin:
+        depends_on:
+          - mysql
+        image: yuting09120310/phpmyadmin:ting
+        restart: always
+        ports:
+          - '80:80'
+        environment:
+          PMA_HOST: mysql
+        volumes:
+            - ".php:/var/www/html/dht/"
+
+volumes:
+    db_data:
